@@ -16,7 +16,6 @@ public class Visita {
 	
 	//il costruttore di default imposta la data di oggi
 	public Visita() {
-		super();
 		this.data = LocalDate.now();
 	}
 

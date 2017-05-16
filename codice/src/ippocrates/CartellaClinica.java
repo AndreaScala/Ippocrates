@@ -3,18 +3,19 @@ import java.util.*;
 
 public class CartellaClinica {
 	
-	private String ID;
+	public static int incrementalID = 0;
+	private int ID;
 	private List<Visita> listaVisite;
 	private List<Prescrizione> listaPrescrizioni;
 	
-	public CartellaClinica(String iD) {
-		super();
-		ID = iD;
+	public CartellaClinica() {
+		this.ID = incrementalID;
+		incrementalID++;
 		this.listaVisite = new ArrayList<Visita>();
 		this.listaPrescrizioni = new ArrayList<Prescrizione>();
 	}
 	
-	public String getID() {
+	public int getID() {
 		return ID;
 	}
 	public List<Visita> getListaVisite() {
@@ -23,8 +24,5 @@ public class CartellaClinica {
 	public List<Prescrizione> getListaPrescrizioni() {
 		return listaPrescrizioni;
 	}
-	
-	
-	
 	
 }

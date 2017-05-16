@@ -1,6 +1,7 @@
 package ippocrates;
 
 public class Prescrizione {
+	
 	private String IDprescrizione;
 	private String descrizione;
 	
@@ -24,6 +25,5 @@ public class Prescrizione {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	
 	
 }
