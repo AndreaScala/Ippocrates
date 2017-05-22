@@ -20,6 +20,16 @@ public class Ippocrates {
 		return null;
 	}
 	
+	public Paziente ricercaPaziente(String nome, String cognome) {
+		Iterator<Paziente> iterator = listaPazienti.iterator();
+		while (iterator.hasNext()) {
+			Paziente p = iterator.next();
+			if (p.getNome()==nome && p.getCognome()==cognome)
+				return p;
+		}
+		return null;
+	}
+	
 	private boolean contienePaziente(String cf) {
 		return (ricercaPaziente(cf)!=null);
 	}
@@ -67,7 +77,6 @@ public class Ippocrates {
 	public void inserisciVisita (String cf, String descrizione, LocalDate data) throws IppocratesException{
 		Paziente p = ricercaPaziente(cf);
 		if (p==null) throw new IppocratesException("Paziente non trovato\n");
-		if (contienePaziente(cf)==false) throw new IppocratesException("Paziente non trovato\n");
 		Visita v = new Visita();
 		v.setDescrizione(descrizione);
 		v.setData(data);
@@ -75,14 +84,38 @@ public class Ippocrates {
 	}
 	
 	public void inserisciVisita (String cf, String descrizione) throws IppocratesException{
-		Paziente p = ricercaPaziente(cf);
-		if (p==null) throw new IppocratesException("Paziente non trovato\n");
-		if (contienePaziente(cf)==false) throw new IppocratesException("Paziente non trovato\n");
-		Visita v = new Visita();
-		v.setDescrizione(descrizione);
-		p.getCartellaClinica().getListaVisite().add(v);
+		inserisciVisita(cf, descrizione, LocalDate.now());
 	}
 	
+	public void inserisciPrescrizione (String cf, String IDprescrizione, String descrizione) throws IppocratesException {
+		Paziente p = ricercaPaziente(cf);
+		if (p==null) throw new IppocratesException("Paziente non trovato\n");
+		Prescrizione pr = new Prescrizione(IDprescrizione, descrizione);
+		List<Prescrizione> L = p.getCartellaClinica().getListaPrescrizioni();
+		if (contienePrescrizione(IDprescrizione, L)) throw new IppocratesException("IDprescrizione esistente con lo stesso valore\n");
+		L.add(pr);
+	}
 	
+	private boolean contienePrescrizione(String IDprescrizione, List<Prescrizione> L) {
+		Iterator<Prescrizione> iterator = L.iterator();
+		while (iterator.hasNext()) {
+			Prescrizione pr = iterator.next();
+			if (pr.getIDprescrizione()==IDprescrizione)
+				return true;
+		}
+		return false;
+	}
+	
+	public CartellaClinica ricercaCartellaClinica (Paziente p) throws IppocratesException{
+		if (ricercaPaziente(p.getCognome(), p.getCognome())==null)
+			throw new IppocratesException ("Paziente non trovato");
+		return p.getCartellaClinica();
+	}
+	
+	public CartellaClinica ricercaCartellaClinica (String nome, String cognome) throws IppocratesException{
+		Paziente p = ricercaPaziente(nome, cognome);
+		if (p==null) throw new IppocratesException ("Paziente non trovato");
+		return ricercaCartellaClinica(p);
+	}
 
 }
