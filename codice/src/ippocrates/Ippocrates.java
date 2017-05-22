@@ -7,7 +7,7 @@ public class Ippocrates {
 	public List<Paziente> listaPazienti;
 	
 	public Ippocrates() {
-		
+		this.listaPazienti = new ArrayList<Paziente>();
 	}
 	
 	public Paziente ricercaPaziente(String cf) {
@@ -82,7 +82,4 @@ public class Ippocrates {
 		v.setDescrizione(descrizione);
 		p.getCartellaClinica().getListaVisite().add(v);
 	}
-	
-	
-
 }
