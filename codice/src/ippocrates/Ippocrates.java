@@ -107,7 +107,7 @@ public class Ippocrates {
 	}
 	
 	public CartellaClinica ricercaCartellaClinica (Paziente p) throws IppocratesException{
-		if (ricercaPaziente(p.getCognome(), p.getCognome())==null)
+		if (ricercaPaziente(p.getNome(), p.getCognome())==null)
 			throw new IppocratesException ("Paziente non trovato");
 		return p.getCartellaClinica();
 	}
