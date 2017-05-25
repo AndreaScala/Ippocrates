@@ -34,5 +34,10 @@ public class Visita {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
+
+	@Override
+	public String toString() {
+		return "Visita [descrizione=" + descrizione + ", data=" + data + "]";
+	}
 	
 }
