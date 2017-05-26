@@ -40,7 +40,7 @@ public class Ippocrates {
 		listaPazienti.add(p);
 	}
 	
-	public void aggiornaCampoPaziente(String cf, String nuovoValore, String campo) throws IppocratesException {
+	public void aggiornaPaziente(String cf, String nuovoValore, String campo) throws IppocratesException {
 		Paziente p = ricercaPaziente(cf);
 		if (p==null) throw new IppocratesException("Codice fiscale del paziente non trovato\n");
 		switch(campo) {
