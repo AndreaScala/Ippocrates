@@ -87,16 +87,16 @@ public class Ippocrates {
 		inserisciVisita(cf, descrizione, LocalDate.now());
 	}
 	
-	public void inserisciPrescrizione (String cf, String IDprescrizione, String descrizione) throws IppocratesException {
+	/*public void inserisciPrescrizione (String cf, String IDprescrizione, String descrizione) throws IppocratesException {
 		Paziente p = ricercaPaziente(cf);
 		if (p==null) throw new IppocratesException("Paziente non trovato\n");
 		Prescrizione pr = new Prescrizione(IDprescrizione, descrizione);
 		List<Prescrizione> L = p.getCartellaClinica().getListaPrescrizioni();
 		if (contienePrescrizione(IDprescrizione, L)) throw new IppocratesException("IDprescrizione esistente con lo stesso valore\n");
 		L.add(pr);
-	}
+	}*/
 	
-	private boolean contienePrescrizione(String IDprescrizione, List<Prescrizione> L) {
+	/*private boolean contienePrescrizione(String IDprescrizione, List<Prescrizione> L) {
 		Iterator<Prescrizione> iterator = L.iterator();
 		while (iterator.hasNext()) {
 			Prescrizione pr = iterator.next();
@@ -104,7 +104,7 @@ public class Ippocrates {
 				return true;
 		}
 		return false;
-	}
+	}*/
 	
 	public CartellaClinica ricercaCartellaClinica (Paziente p) throws IppocratesException{
 		if (ricercaPaziente(p.getNome(), p.getCognome())==null)
