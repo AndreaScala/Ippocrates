@@ -24,4 +24,11 @@ public class Farmaco implements Elemento {
 		this.quantita = quantita;
 	}
 
+	@Override
+	public String toString() {
+		return "Farmaco [nome=" + nome + ", quantita=" + quantita + "]";
+	}
+	
+	
+
 }

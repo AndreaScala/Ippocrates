@@ -15,5 +15,11 @@ public class Impegnativa implements Prescrizione {
 		Esame ex = (Esame) e;
 		this.listaEsami.add(ex);
 	}
+	
+	@Override
+	public ArrayList<Elemento> getLista() {
+		ArrayList<Elemento> l = new ArrayList<Elemento>(this.listaEsami);
+		return l;
+	}
 
 }

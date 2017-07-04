@@ -15,4 +15,10 @@ public class Ricetta implements Prescrizione {
 		this.listaFarmaci.add(f);
 	}
 
+	@Override
+	public ArrayList<Elemento> getLista() {
+		ArrayList<Elemento> l = new ArrayList<Elemento>(this.listaFarmaci);
+		return l;
+	}
+
 }

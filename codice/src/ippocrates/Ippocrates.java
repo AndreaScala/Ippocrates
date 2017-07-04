@@ -87,6 +87,23 @@ public class Ippocrates {
 		inserisciVisita(cf, descrizione, LocalDate.now());
 	}
 	
+	public void inserisciElemento (Prescrizione pr, String nome, String dato2) {
+		String classe = pr.getClass().getSimpleName();
+		Elemento e;
+		if (classe.equals("Ricetta"))
+			e = new Farmaco(nome, Integer.parseInt(dato2));
+		else
+			e = new Esame(nome,dato2);
+		
+		pr.inserisciElemento(e);
+	}
+	
+	public void inserisciPrescrizione (String cf, Prescrizione pr) throws IppocratesException {
+		Paziente p = ricercaPaziente(cf);
+		if (p==null) throw new IppocratesException ("Paziente non trovato\n");
+		p.getCartellaClinica().getListaPrescrizioni().add(pr);
+	}
+	
 	/*public void inserisciPrescrizione (String cf, String IDprescrizione, String descrizione) throws IppocratesException {
 		Paziente p = ricercaPaziente(cf);
 		if (p==null) throw new IppocratesException("Paziente non trovato\n");

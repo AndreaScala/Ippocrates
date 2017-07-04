@@ -1,15 +1,14 @@
 package ippocrates;
-import java.util.*;
 
 public class Esame implements Elemento {
 	
 	private String nome;
-	private Date data;
+	private String descr;
 	
-	public Esame(String nome, Date data) {
+	public Esame(String nome, String descr) {
 		super();
 		this.nome = nome;
-		this.data = data;
+		this.descr = descr;
 	}
 	
 	public String getNome() {
@@ -18,10 +17,17 @@ public class Esame implements Elemento {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Date getData() {
-		return data;
+	public String getDescr() {
+		return descr;
 	}
-	public void setData(Date data) {
-		this.data = data;
+	public void setDescr(String descr) {
+		this.descr = descr;
 	}
+
+	@Override
+	public String toString() {
+		return "Esame [nome=" + nome + ", descr=" + descr + "]";
+	}
+	
+	
 }
