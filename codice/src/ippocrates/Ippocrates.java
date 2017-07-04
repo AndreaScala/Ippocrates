@@ -94,7 +94,6 @@ public class Ippocrates {
 			e = new Farmaco(nome, Integer.parseInt(dato2));
 		else
 			e = new Esame(nome,dato2);
-		
 		pr.inserisciElemento(e);
 	}
 	
@@ -103,36 +102,4 @@ public class Ippocrates {
 		if (p==null) throw new IppocratesException ("Paziente non trovato\n");
 		p.getCartellaClinica().getListaPrescrizioni().add(pr);
 	}
-	
-	/*public void inserisciPrescrizione (String cf, String IDprescrizione, String descrizione) throws IppocratesException {
-		Paziente p = ricercaPaziente(cf);
-		if (p==null) throw new IppocratesException("Paziente non trovato\n");
-		Prescrizione pr = new Prescrizione(IDprescrizione, descrizione);
-		List<Prescrizione> L = p.getCartellaClinica().getListaPrescrizioni();
-		if (contienePrescrizione(IDprescrizione, L)) throw new IppocratesException("IDprescrizione esistente con lo stesso valore\n");
-		L.add(pr);
-	}*/
-	
-	/*private boolean contienePrescrizione(String IDprescrizione, List<Prescrizione> L) {
-		Iterator<Prescrizione> iterator = L.iterator();
-		while (iterator.hasNext()) {
-			Prescrizione pr = iterator.next();
-			if (pr.getIDprescrizione()==IDprescrizione)
-				return true;
-		}
-		return false;
-	}*/
-	
-	public CartellaClinica ricercaCartellaClinica (Paziente p) throws IppocratesException{
-		if (ricercaPaziente(p.getNome(), p.getCognome())==null)
-			throw new IppocratesException ("Paziente non trovato");
-		return p.getCartellaClinica();
-	}
-	
-	public CartellaClinica ricercaCartellaClinica (String nome, String cognome) throws IppocratesException{
-		Paziente p = ricercaPaziente(nome, cognome);
-		if (p==null) throw new IppocratesException ("Paziente non trovato");
-		return ricercaCartellaClinica(p);
-	}
-
 }

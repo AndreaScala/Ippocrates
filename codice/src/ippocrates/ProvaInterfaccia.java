@@ -1,5 +1,4 @@
 package ippocrates;
-
 import java.util.*;
 
 import ippocrates.exceptions.IppocratesException;
