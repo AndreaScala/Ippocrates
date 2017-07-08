@@ -33,6 +33,9 @@ public class TestIppocrates {
 		
 		assertEquals(pTest.toString(), ippocrates.ricercaPaziente(cf).toString());
 		
+		for (char c : ippocrates.ricercaPaziente(cf).toString().toCharArray())
+			assertFalse(Character.isDigit(c));
+		
 		//s.close();
 		
 	}
@@ -64,7 +67,7 @@ public class TestIppocrates {
 		desc = s.nextLine();
 		
 		ippocrates.inserisciVisita(cf, desc);
-		Visita vTest = new Visita();
+		Visita vTest = new Visita(desc);
 		
 		assertEquals(vTest.toString(),ippocrates.ricercaPaziente(cf).getCartellaClinica().getListaVisite().get(0).toString());
 		
@@ -98,10 +101,13 @@ public class TestIppocrates {
 		System.out.println("Fai la tua prima prescrizione!");
 		System.out.println("Ricetta o impegnativa?");
 		choice = s.nextLine();
+		
 		if (choice.equals("Ricetta"))
 			prfac = new RicettaFactory();
-		else
+		else {
 			prfac = new ImpegnativaFactory();
+			assertEquals("Impegnativa", choice);
+		}
 		
 		Prescrizione prescrizione = prfac.creaPrescrizione();
 		System.out.println("Nome Farmaco/Esame: ");
@@ -113,8 +119,13 @@ public class TestIppocrates {
 		
 		Elemento eTest;
 		
-		if (choice.equals("Ricetta"))
-			eTest = new Farmaco(nomeEl,Integer.parseInt(dato2El));
+		if (choice.equals("Ricetta")) {
+			for (char c : dato2El.toCharArray())
+				assertTrue(Character.isDigit(c));
+			
+			assertTrue(Integer.parseInt(dato2El) > 0);
+				eTest = new Farmaco(nomeEl,Integer.parseInt(dato2El));
+		}
 		else
 			eTest = new Esame(nomeEl, dato2El);
 		

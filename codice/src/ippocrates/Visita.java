@@ -18,6 +18,11 @@ public class Visita {
 	public Visita() {
 		this.data = LocalDate.now();
 	}
+	
+	public Visita(String descrizione) {
+		this.descrizione = descrizione;
+		this.data = LocalDate.now();
+	}
 
 	public String getDescrizione() {
 		return descrizione;
